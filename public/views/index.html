@@ -1,0 +1,129 @@
+ <!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+  
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../stylesheets/style.css" />
+
+    <title>Todoアプリ</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Content here -->
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--　タスク追加のボタン -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="add-task">
+      タスクを追加する
+    </button>
+    
+    <!-- タスク追加フォーム -->
+  
+        <form id="task-form">
+          <p class="add-task" > タスクを記入してください </p>
+          <textarea class="add-task"></textarea>
+          
+          <label for="select">カテゴリ</label>
+          <select name ="category" id="category">
+            <option id="life">生活</option>
+            <option id="study">勉強</option>
+            <option id="work">仕事</option>
+            <option id="hobby">趣味</option>
+          </select>
+          <div class="addform-btn">
+            <button type="button" class="btn btn-primary" input type="submit" >タスクを追加</button>
+            <button type="button" class="btn btn-secondary" id="display-none">閉じる</button>          
+          </div>
+        </form>
+  
+
+    <!-- タスク更新フォーム -->
+
+
+    <!-- やることリスト -->
+      <ul class="list-group">
+      <li class="list-group-item">犬の散歩をする 
+        <button type="button" class="btn btn-success">変更</button>
+        <button type="button" class="btn btn-danger" >削除</button>
+      </li>
+      <li class="list-group-item">犬にご飯をあげる
+        <div>
+        <button type="button" class="btn btn-success">変更</button>
+        <button type="button" class="btn btn-danger">削除</button>
+        </div>
+      </li>
+      <li class="list-group-item">床掃除をする
+        <button type="button" class="btn btn-success">変更</button>
+        <button type="button" class="btn btn-danger">削除</button>
+      </li>
+      <li class="list-group-item">お風呂掃除をする
+        <button type="button" class="btn btn-success">変更</button>
+        <button type="button" class="btn btn-danger" >削除</button>
+      </li>
+      <li class="list-group-item">Paizaを進める
+        <button type="button" class="btn btn-success">変更</button>
+        <button type="button" class="btn btn-danger">削除</button>
+      </li>
+    </ul>
+
+    <script>
+
+      // 更新ボタン
+      $(".btn btn-success").on("click", function () {
+        $("#update-form").show();
+      });
+      
+      // 削除
+       $(".btn btn-danger").on("click", function () {
+        const taskName = $(this).data("delete");
+        alert(`下記の内容を削除します。\n ${taskName}`);
+      });
+
+       //フォームを出す 
+      $("#add-task").click(function(){
+        $("#task-form").fadeIn();
+      }) ; 
+
+      // フォームを閉じる
+      $(".display-none").on("click", function () {
+        $("#create-form").hide();
+        $("#update-form").hide();
+      });
+
+    </script>
+    
+
+
+  </body>
+</html>

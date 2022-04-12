@@ -1,0 +1,31 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00b7ff;
+  padding: 50px
+}
+
+
+.textarea {
+  padding: 50px;
+}
+
+
+ul {
+  padding: 20px
+}
+
+.btn btn-primarybutton {
+  padding-left: 50px;
+}
+
+.btn btn-success {
+  padding-left: auto;
+}
+
+.btn btn-danger {
+  padding: auto;
+}
