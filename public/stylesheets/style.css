@@ -9,10 +9,6 @@ a {
 }
 
 
-.textarea {
-  padding: 50px;
-}
-
 
 ul {
   padding: 20px
@@ -22,10 +18,44 @@ ul {
   padding-left: 50px;
 }
 
-.btn btn-success {
-  padding-left: auto;
+.add-form-modal {
+  border: 1px #00b7ff;
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+  background-color: azure;
+  display: none;
 }
 
-.btn btn-danger {
-  padding: auto;
+.add-form {
+  padding: 10px;
+  border: 2px #00b7ff;
+  width: 50%;
+  height: 50%;
+  cursor: pointer;
+  background-color: azure;
+  display: none;
 }
+
+.update-form{
+  padding: 10px;
+  border: 2px #00b7ff;
+  width: 50%;
+  height: 50%;
+  cursor: pointer;
+  background-color: rgb(234, 255, 248);
+  
+}
+
+.table-striped {
+  padding: 50px;
+}
+
+update-form-modal {
+  border: 1px #00b7ff;
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+  background-color: azure;
+}
+

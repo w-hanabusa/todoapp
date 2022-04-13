@@ -48,28 +48,65 @@
       タスクを追加する
     </button>
     
-    <!-- タスク追加フォーム -->
-  
-        <form id="task-form">
-          <p class="add-task" > タスクを記入してください </p>
-          <textarea class="add-task"></textarea>
-          
-          <label for="select">カテゴリ</label>
-          <select name ="category" id="category">
-            <option id="life">生活</option>
-            <option id="study">勉強</option>
-            <option id="work">仕事</option>
-            <option id="hobby">趣味</option>
-          </select>
-          <div class="addform-btn">
-            <button type="button" class="btn btn-primary" input type="submit" >タスクを追加</button>
-            <button type="button" class="btn btn-secondary" id="display-none">閉じる</button>          
-          </div>
-        </form>
-  
+    <!-- タスク追加フォーム モーダルにしたい -->
+      <div id="add-form-modal" class="add-form">
+          <form action="#" method="post" class="add-form">
+            <label for="title"> タスクを記入してください </label>
+              <div class="form-group">
+                <input class="form-control" type="text" name="title" id="title">
+               </div>
 
-    <!-- タスク更新フォーム -->
+             <label for="limit">期限を入力してください</label>
+              <div class="form-group">
+               <input class="form-control" type="date" name="limit" id="limit">
+              </div>
 
+             <div class="form-group">
+                <label for="select">カテゴリを選択してください</label>
+                <select class="form-control" name ="category" id="category">
+                  <option id="life">生活</option>
+                  <option id="study">勉強</option>
+                  <option id="work">仕事</option>
+                  <option id="hobby">趣味</option>
+                </select>
+             </div>
+
+              <div class="add-form-btn">
+                <button type="button" class="btn btn-primary" input type="submit" >タスクを追加</button>
+                <button type="button" class="btn btn-secondary" id="add-display-none">閉じる</button>          
+              </div>
+          </form> 
+       </div>
+
+    <!-- タスク更新フォーム 作る-->
+    <div id="update-form-modal" class="update-form">   
+        <form action="#" method="patch" class="update-form" id="update-form">
+          <label for="title"> タスクを記入してください </label>
+            <div class="form-group">
+              <input class="form-control" type="text" name="title" id="title">
+             </div>
+
+           <label for="limit">期限を入力してください</label>
+            <div class="form-group">
+             <input class="form-control" type="date" name="limit" id="limit">
+            </div>
+
+           <div class="form-group">
+              <label for="select">カテゴリを選択してください</label>
+              <select class="form-control" name ="category" id="category">
+                <option id="life">生活</option>
+                <option id="study">勉強</option>
+                <option id="work">仕事</option>
+                <option id="hobby">趣味</option>
+              </select>
+           </div>
+
+            <div class="update-form-btn">
+              <button type="button" class="btn btn-primary" input type="submit" >変更</button>
+              <button type="button" class="btn btn-secondary" id="update-display-none">閉じる</button>          
+            </div>
+      </form>
+    </div>
 
     <!-- やることリスト -->
       <ul class="list-group">
@@ -78,10 +115,8 @@
         <button type="button" class="btn btn-danger" >削除</button>
       </li>
       <li class="list-group-item">犬にご飯をあげる
-        <div>
         <button type="button" class="btn btn-success">変更</button>
         <button type="button" class="btn btn-danger">削除</button>
-        </div>
       </li>
       <li class="list-group-item">床掃除をする
         <button type="button" class="btn btn-success">変更</button>
@@ -97,29 +132,89 @@
       </li>
     </ul>
 
+    <!--テーブルの方がいいのかな-->
+    <h2 id="table">やることリスト</h2>
+    			<table class="table table-striped" id="table-striped">
+    			    <thead>
+    			        <tr>
+    			            <th class="category" style="display: none">カテゴリ</th>
+    			            <th style="display: none">やること</th>
+    			            <th style="display: none">期限</th>
+    			            <td style="display: none"><button type="button" class="btn btn-success">変更</button></td>
+                      <td style="display: none"><button type="button" class="btn btn-danger" >削除</button></td>
+    			        </tr>
+    			    </thead>
+    			    <tbody>
+    			        <tr>
+    			            <td class="category">生活</td>
+    			            <td>犬の散歩をする</td>
+    			            <td>2022/4/13</td>
+    			            <td><button type="button" class="btn btn-success">変更</button></td>
+                      <td><button type="button" class="btn btn-danger" >削除</button></td>
+    			        </tr>
+                    	<tr>
+                    		<td class="category">生活</td>
+                    		<td>犬にご飯をあげる</td>
+                    		<td>2022/4/13</td>
+                    		<td><button type="button" class="btn btn-success">変更</button></td>
+                        <td><button type="button" class="btn btn-danger" >削除</button></td>
+                    	</tr>
+	                    <tr>
+                        <td class="category">生活</td>
+                        <td>床掃除をする</td>
+                        <td>2022/4/13</td>
+                        <td><button type="button" class="btn btn-success">変更</button></td>
+                        <td><button type="button" class="btn btn-danger" >削除</button></td>
+                    	</tr>
+                    	<tr>
+                    		<td class="category">生活</td>
+                    		<td>お風呂掃除をする</td>
+                    		<td>2022/4/13</td>
+                    		<td><button type="button" class="btn btn-success">変更</button></td>
+                        <td><button type="button" class="btn btn-danger" >削除</button></td>
+                    	</tr>
+                      <tr>
+                    		<td class="category">勉強</td>
+                    		<td>Paizaを進める</td>
+                    		<td>2022/4/13</td>
+                    		<td><button type="button" class="btn btn-success">変更</button></td>
+                        <td><button type="button" class="btn btn-danger" >削除</button></td>
+                    	</tr>
+    			    </tbody>
+    			</table>
+
+
     <script>
-
-      // 更新ボタン
-      $(".btn btn-success").on("click", function () {
-        $("#update-form").show();
-      });
-      
-      // 削除
-       $(".btn btn-danger").on("click", function () {
-        const taskName = $(this).data("delete");
-        alert(`下記の内容を削除します。\n ${taskName}`);
-      });
-
-       //フォームを出す 
-      $("#add-task").click(function(){
-        $("#task-form").fadeIn();
+ 
+       //新規登録フォームを出す 
+       $("#add-task").click(function() {
+        $(".add-form").show();
       }) ; 
 
-      // フォームを閉じる
-      $(".display-none").on("click", function () {
-        $("#create-form").hide();
-        $("#update-form").hide();
+      // 更新フォームを出す
+      $("#btn btn-success").click(function () {
+        $(".update-form").show();
       });
+
+      // 新規登録フォームを閉じる
+      $("#add-display-none").click(function () {
+        $(".add-form").hide();
+      });
+
+      // 更新フォームを閉じる
+      $("#update-display-none").click(function () {
+        $(".update-form").hide();
+      });
+
+      //カテゴリに応じてラベルに色をつけたい
+      
+
+
+      // 削除
+       $(".btn btn-danger").click(function () {
+        alert("タスクを削除します");
+      });
+  
 
     </script>
     
