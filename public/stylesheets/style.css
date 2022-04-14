@@ -3,59 +3,53 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00b7ff;
-  padding: 50px
+.list-group-item {
+  margin-top: 20px;
 }
 
-
-
-ul {
-  padding: 20px
+.list-1 {
+  border-left: #EB4E4E solid 20px;
+  margin-top: 20px;
 }
 
-.btn btn-primarybutton {
-  padding-left: 50px;
+.list-2 {
+  border-left: #2F8D8D solid 20px;
+}
+.list-3 {
+  border-left: #EB954E solid 20px;
+}
+.list-4 {
+  border-left: #3EBC3E solid 20px;
+}
+.list-5 {
+  border-left: #2F8D8D solid 20px;
+}
+
+box {
+  height: 100px;
+  width: 100px;
+  background-color: #e65454;
 }
 
 .add-form-modal {
-  border: 1px #00b7ff;
-  width: 200px;
-  height: 200px;
-  cursor: pointer;
-  background-color: azure;
-  display: none;
+  background-color: rgb(233, 251, 251);
 }
 
-.add-form {
-  padding: 10px;
-  border: 2px #00b7ff;
-  width: 50%;
-  height: 50%;
+
+add-form {
   cursor: pointer;
-  background-color: azure;
-  display: none;
+  background-color: rgb(233, 251, 251);
+
 }
 
-.update-form{
-  padding: 10px;
-  border: 2px #00b7ff;
-  width: 50%;
-  height: 50%;
+update-form{
   cursor: pointer;
   background-color: rgb(234, 255, 248);
-  
+;
 }
 
 .table-striped {
   padding: 50px;
 }
 
-update-form-modal {
-  border: 1px #00b7ff;
-  width: 200px;
-  height: 200px;
-  cursor: pointer;
-  background-color: azure;
-}
 
