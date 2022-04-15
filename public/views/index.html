@@ -33,6 +33,8 @@
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
       crossorigin="anonymous"
     ></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
+    ></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -66,21 +68,21 @@
             <form action="#" method="post" class="add-form">
               <label for="title"> タスクを記入してください </label>
                 <div class="form-group">
-                  <input class="form-control" type="text" name="title" id="title">
+                  <input class="form-control task" type="text" name="task" id="task">
                 </div>
 
               <label for="limit">期限を入力してください</label>
                 <div class="form-group">
-                <input class="form-control" type="date" name="limit" id="limit">
+                <input class="form-control limit" type="date" name="limit" id="limit">
                 </div>
 
               <div class="form-group">
                   <label for="select">カテゴリを選択してください</label>
-                  <select class="form-control" name ="category" id="category">
-                    <option id="category-1">生活</option>
-                    <option id="category-2">勉強</option>
-                    <option id="category-3">仕事</option>
-                    <option id="category-4">趣味</option>
+                  <select class="form-control category" name ="category" id="category">
+                    <option value="1">生活</option>
+                    <option value="2">勉強</option>
+                    <option value="3">仕事</option>
+                    <option value="4">趣味</option>
                   </select>
               </div>
             </form>
@@ -110,30 +112,30 @@
                 <form action="#" method="patch" class="update-form" id="update-form">
                   <label for="title"> タスクを記入してください </label>
                     <div class="form-group">
-                      <input class="form-control" type="text" name="title" id="title">
+                      <input class="form-control task" type="text" name="task" id="task">
                     </div>
 
                   <label for="limit">期限を入力してください</label>
                     <div class="form-group">
-                    <input class="form-control" type="date" name="limit" id="limit">
+                      <input class="form-control limit" type="date" name="limit" id="limit">
                     </div>
 
                   <div class="form-group">
                       <label for="category">カテゴリを選択してください</label>
-                      <select class="form-control" name ="category" id="category">
-                        <option id="life">生活</option>
-                        <option id="study">勉強</option>
-                        <option id="work">仕事</option>
-                        <option id="hobby">趣味</option>
+                      <select class="form-control category" name ="category" id="category">
+                        <option value="1">生活</option>
+                        <option value="2">勉強</option>
+                        <option value="3">仕事</option>
+                        <option value="4">趣味</option>
                       </select>
                   </div>
 
                   <div class="form-group">
                     <label for="status">状態を選択してください</label>
-                    <select class="form-control" name="status" id="status">
-                      <option id="status-1">完了</option>
-                      <option id="status-2">途中</option>
-                      <option id="status-3">手つかず</option>
+                    <select class="form-control status" name="status" id="status">
+                      <option value="1">完了</option>
+                      <option value="2">途中</option>
+                      <option value="3">手つかず</option>
                     </select>
                   </div>
                 </form>
@@ -163,7 +165,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <p>下記のタスクを削除します</p>
+            <p id="alart"></p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger">削除</button>
@@ -185,7 +187,7 @@
           <div class="col-2">手つかず</div>
           <div class="btn-group col-2" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#update-form-modal">変更</button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#removeModal">削除</button>
+            <button type="button" class="btn btn-danger remove" data-toggle="modal" data-target="#removeModal" data-delete="犬の散歩をする">削除</button>
           </div>
         </div>
         </div>
@@ -199,7 +201,7 @@
           <div class="col-2">手つかず</div>
           <div class="btn-group col-2" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#update-form-modal">変更</button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#removeModal">削除</button>
+            <button type="button" class="btn btn-danger remove" data-toggle="modal" data-target="#removeModal" data-delete="犬にご飯をあげる">削除</button>
           </div>
         </div>
       </li>
@@ -211,7 +213,7 @@
           <div class="col-2">手つかず</div>
           <div class="btn-group col-2" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#update-form-modal">変更</button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#removeModal">削除</button>
+            <button type="button" class="btn btn-danger remove" data-toggle="modal" data-target="#removeModal" data-delete="床掃除をする">削除</button>
           </div>
         </div>
       </li>
@@ -223,7 +225,7 @@
           <div class="col-2">手つかず</div>
           <div class="btn-group col-2" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#update-form-modal">変更</button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#removeModal">削除</button>
+            <button type="button" class="btn btn-danger remove" data-toggle="modal" data-target="#removeModal" data-delete="お風呂掃除をする">削除</button>
           </div>
         </div>
       </li>
@@ -234,7 +236,7 @@
           <div class="col-2">手つかず</div>
           <div class="btn-group col-2" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#update-form-modal">変更</button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#removeModal">削除</button>
+            <button type="button" class="btn btn-danger remove" data-toggle="modal" data-target="#removeModal" data-delete="Paizaを進める">削除</button>
           </div>
         </div>
       </li>
@@ -347,7 +349,11 @@
         var button = $(event.#update-form-modal) // Button that triggered the modal
         var recipient = button.data('whatever')
       });
-  
+      
+      $(".remove").click(function () {
+        const task = $(this).data("delete");
+        $("#alart").text(`下記の内容を削除します。\n ${task}`);
+      });
 
     </script>
   </body>
