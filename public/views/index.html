@@ -33,6 +33,8 @@
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
       crossorigin="anonymous"
     ></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
+    ></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -66,21 +68,21 @@
             <form action="#" method="post" class="add-form">
               <label for="title"> タスクを記入してください </label>
                 <div class="form-group">
-                  <input class="form-control" type="text" name="title" id="title">
+                  <input class="form-control task" type="text" name="task" id="task">
                 </div>
 
               <label for="limit">期限を入力してください</label>
                 <div class="form-group">
-                <input class="form-control" type="date" name="limit" id="limit">
+                <input class="form-control limit" type="date" name="limit" id="limit">
                 </div>
 
               <div class="form-group">
                   <label for="select">カテゴリを選択してください</label>
-                  <select class="form-control" name ="category" id="category">
-                    <option id="category-1">生活</option>
-                    <option id="category-2">勉強</option>
-                    <option id="category-3">仕事</option>
-                    <option id="category-4">趣味</option>
+                  <select class="form-control category" name ="category" id="category">
+                    <option value="1">生活</option>
+                    <option value="2">勉強</option>
+                    <option value="3">仕事</option>
+                    <option value="4">趣味</option>
                   </select>
               </div>
             </form>
@@ -91,6 +93,28 @@
             <button type="button" class="btn btn-secondary" id="add-display-none" data-dismiss="modal">閉じる</button>          
           </div>
        </div>
+      </div>
+    </div>
+
+    
+    <!--　タスク削除ボタン　-->
+    <div class="modal fade" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="removeModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="removeModalLabel">タスクの削除</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="delete">タスクを削除します</div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger">削除</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
       </div>
     </div>
     
@@ -105,35 +129,35 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-              <div class="modal-body">
 
+              <div class="modal-body">
                 <form action="#" method="patch" class="update-form" id="update-form">
                   <label for="title"> タスクを記入してください </label>
                     <div class="form-group">
-                      <input class="form-control" type="text" name="title" id="title">
+                      <input class="form-control task" type="text" name="task" id="task">
                     </div>
 
                   <label for="limit">期限を入力してください</label>
                     <div class="form-group">
-                    <input class="form-control" type="date" name="limit" id="limit">
+                      <input class="form-control limit" type="date" name="limit" id="limit">
                     </div>
 
                   <div class="form-group">
                       <label for="category">カテゴリを選択してください</label>
-                      <select class="form-control" name ="category" id="category">
-                        <option id="life">生活</option>
-                        <option id="study">勉強</option>
-                        <option id="work">仕事</option>
-                        <option id="hobby">趣味</option>
+                      <select class="form-control category" name ="category" id="category">
+                        <option value="1">生活</option>
+                        <option value="2">勉強</option>
+                        <option value="3">仕事</option>
+                        <option value="4">趣味</option>
                       </select>
                   </div>
 
                   <div class="form-group">
                     <label for="status">状態を選択してください</label>
-                    <select class="form-control" name="status" id="status">
-                      <option id="status-1">完了</option>
-                      <option id="status-2">途中</option>
-                      <option id="status-3">手つかず</option>
+                    <select class="form-control status" name="status" id="status">
+                      <option value="1">完了</option>
+                      <option value="2">途中</option>
+                      <option value="3">手つかず</option>
                     </select>
                   </div>
                 </form>
@@ -150,29 +174,7 @@
       </div>
     </div>
 
-    
-
-    <!--　タスク削除ボタン　-->
-    <div class="modal fade" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="removeModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="removeModalLabel">タスクの削除</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>下記のタスクを削除します</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger">削除</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  
 
     
     <!-- やることリスト -->
@@ -180,12 +182,14 @@
       <li class="list-group-item list-1">
         
         <div class="row"> 
+          <div class="category" style="display: none;">1</div>
+          <div class="category"></div>
           <div class="col-5">犬の散歩をする</div>
           <div class="col-2">2022/04/13</div>
           <div class="col-2">手つかず</div>
           <div class="btn-group col-2" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#update-form-modal">変更</button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#removeModal">削除</button>
+            <button type="button" class="btn btn-danger delete" data-toggle="modal" data-target="#removeModal" data-delete="犬の散歩をする">削除</button>
           </div>
         </div>
         </div>
@@ -193,25 +197,23 @@
 
       <li class="list-group-item list-2">
         <div class="row">
-         
           <div class="col-5">犬にご飯をあげる</div>
           <div class="col-2">2022/04/13</div>
           <div class="col-2">手つかず</div>
           <div class="btn-group col-2" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#update-form-modal">変更</button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#removeModal">削除</button>
+            <button type="button" class="btn btn-danger remove" data-toggle="modal" data-target="#removeModal" data-delete="犬にご飯をあげる">削除</button>
           </div>
         </div>
       </li>
       <li class="list-group-item list-3">
         <div class="row">
-          
           <div class="col-5">床掃除をする</div>
           <div class="col-2">2022/04/13</div>
           <div class="col-2">手つかず</div>
           <div class="btn-group col-2" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#update-form-modal">変更</button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#removeModal">削除</button>
+            <button type="button" class="btn btn-danger delete" data-toggle="modal" data-target="#removeModal" data-delete="床掃除をする">削除</button>
           </div>
         </div>
       </li>
@@ -223,7 +225,7 @@
           <div class="col-2">手つかず</div>
           <div class="btn-group col-2" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#update-form-modal">変更</button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#removeModal">削除</button>
+            <button type="button" class="btn btn-danger delete" data-toggle="modal" data-target="#removeModal" data-delete="お風呂掃除をする">削除</button>
           </div>
         </div>
       </li>
@@ -234,89 +236,18 @@
           <div class="col-2">手つかず</div>
           <div class="btn-group col-2" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#update-form-modal">変更</button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#removeModal">削除</button>
+            <button type="button" class="btn btn-danger delete" data-toggle="modal" data-target="#removeModal" data-delete="Paizaを進める">削除</button>
           </div>
         </div>
       </li>
     </ul>
 
 
-    <!--テーブルの方がいいのかな-->
-   
-        <table class="table table-hover" style="margin-top: 200px;">
-    			  <thead>
-    			      <tr>
-    			          <th style="display: none">カテゴリ</th>
-    			           <th style="display: none">やること</th>
-    			           <th style="display: none">期限</th>
-                     <th style="display: none;">状態</th>
-    			           <th style="display: none">
-                      <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#update-form-modal">変更</button>
-                        <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#removeModal">削除</button></div></th>
-                </tr>
-    			  </thead>
-    			    <tbody>
-    			        <tr>
-    			            <td class="category">生活</td>
-    			            <td>犬の散歩をする</td>
-    			            <td>2022/4/13</td>
-                      <td>手つかず</td>
-    			            <td>
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#update-form-modal">変更</button>
-                        <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#removeModal">削除</button></div></td>
-    			        </tr>
-                    	<tr>
-                    		<td class="category">生活</td>
-                    		<td>犬にご飯をあげる</td>
-                    		<td>2022/4/13</td>
-                        <td>手つかず</td>
-                    		<td>
-                          <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#update-form-modal">変更</button>
-                            <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#removeModal">削除</button>
-                          </div></td>
-                    	</tr>
-	                    <tr>
-                        <td class="category">生活</td>
-                        <td>床掃除をする</td>
-                        <td>2022/4/13</td>
-                        <td>完了</td>
-                        <td>
-                          <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#update-form-modal">変更</button>
-                            <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#removeModal">削除</button>
-                          </div></td>
-                    	</tr>
-                    	<tr>
-                    		<td class="category">生活</td>
-                    		<td>お風呂掃除をする</td>
-                    		<td>2022/4/13</td>
-                        <td>完了</td>
-                    		<td>
-                          <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#update-form-modal">変更</button>
-                            <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#removeModal">削除</button>
-                          </div></td>
-                    	</tr>
-                      <tr>
-                    		<td class="category">勉強</td>
-                    		<td>Paizaを進める</td>
-                    		<td>2022/4/13</td>
-                        <td>途中</td>
-                    		<td>
-                          <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#update-form-modal">変更</button>
-                            <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#removeModal">削除</button>
-                          </div></td>
-                    	</tr>
-    			    </tbody>
-    	</table>
 
 
+
+    <script src="../JavaScripts/index.js"></script>
     <script>
- 
        /*　boothtrapがやるようになった処理
          新規登録フォームを出す 
        $("#add-task").click(function() {
@@ -338,16 +269,42 @@
         var recipient = button.data('whatever')
       }); 
 
-      //カテゴリに応じてラベルに色をつけたい
-      
+      //カテゴリに応じてラベルに色をつけたい　API先にやろう
 
 
       // 削除
+
+      $(".btn-danger").on("click",function () {
+        const task = $(this).data("delete");
+        alart(`下記の内容を削除します。\n ${task}`);
+      });
+      
+      //　削除モーダルを出す
       $('#removeModal').on('show.bs.modal', function (event) {
         var button = $(event.#update-form-modal) // Button that triggered the modal
         var recipient = button.data('whatever')
+      }); 
+
+
+
+      // 登録ボタン押下
+      $("#add-task").on("clisk", async function() {
+        //　リクエストデータをフォームから取得
+        const requestData = {
+          taskName: $("#add-form input[name=task]").val(),
+          deadline: $("#add-form input[name=limit]").val(),
+          category: $("#add-form select[name=category]").val(),
+        };
+
+        //　新規登録apiを実行
+        const response = await httpPost(
+          "//" + window.location.host + "/api/tasks",
+          requestData
+        );
+
+        //　画面をリロード
+        window.location.reload();
       });
-  
 
     </script>
   </body>
