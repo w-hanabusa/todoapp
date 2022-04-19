@@ -1,29 +1,28 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: rgb(254, 254, 254);
 }
 
 .list-group-item {
   margin-top: 20px;
 }
 
-.list-1 {
+.cc-1 {
   border-left: #EB4E4E solid 20px;
   margin-top: 20px;
 }
 
-.list-2 {
+.cc-2 {
   border-left: #2F8D8D solid 20px;
 }
-.list-3 {
+.cc-3 {
   border-left: #EB954E solid 20px;
 }
-.list-4 {
+.cc-4 {
   border-left: #3EBC3E solid 20px;
 }
-.list-5 {
-  border-left: #2F8D8D solid 20px;
-}
+
 
 box {
   height: 100px;
@@ -31,14 +30,9 @@ box {
   background-color: #e65454;
 }
 
-.add-form-modal {
-  background-color: rgb(233, 251, 251);
-}
 
-
-add-form {
-  cursor: pointer;
-  background-color: rgb(233, 251, 251);
+.update-form-modal {
+  background-color: rgb(241, 254, 248);
 
 }
 

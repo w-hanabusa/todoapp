@@ -12,16 +12,13 @@ const { patch } = require("../routes/api/index.js");
 postTasks = async function (body) {
   let connection = null;
   try {
-    connection = await mysql.createConnection(config.dbSetting); //これはこう書く
+    connection = await mysql.createConnection(config.dbSetting);  //これはこう書く
     //　ここにSQLを記述する
-    console.log(1);
-    const sql =
+       const sql =
      "INSERT INTO todoapp.t_task (task_name, deadline, category_id) VALUES (?,?,?);";
-     console.log(2);
-    let d = [body.taskName, body.deadline, body.category];
-    console.log(3);
-    const [rows, fields] = await connection.query(sql, d);
-    console.log(4);
+        let d = [body.taskName, body.deadline, body.category];
+      const [rows, fields] = await connection.query(sql, d);
+  
 
     // console.log(rows);
     return rows;
@@ -43,14 +40,13 @@ getTasks = async function () {
     connection = await mysql.createConnection(config.dbSetting);
     //
     const sql =
-      "SELECT t_task.id, t_task.category_id, m_category.category_name, t_task.task_name,t_task.deadline, t_task.task_status, t_task.updated_at,t_task.created_at FROM t_task LEFT JOIN m_category ON t_task.category_id = m_category.id";
+      "SELECT t_task.id, t_task.category_id, m_category.category_name, t_task.task_name,t_task.deadline, t_task.updated_at,t_task.created_at,t_status.status FROM t_task INNER JOIN m_category ON t_task.category_id = m_category.id INNER JOIN t_status ON t_task.task_status = t_status.id;";
       const [rows, fields] = await connection.query(sql);
       return rows;
   } catch(err) {
     console.log(err);
   } finally {
     connection.end();
-
   }
 };
 

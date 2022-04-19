@@ -56,7 +56,7 @@
     <!-- タスク追加フォーム　-->
     <div class="modal fade" id="create-form-modal" tabindex="-1" role="dialog" aria-labelledby="create-form-modalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content create-form-modal">
           <div class="modal-header">
             <h5 class="modal-title" id="create-form-modalLabel">タスクの新規追加</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -99,10 +99,11 @@
     <script>
       // 登録ボタンを押したとき
       $("#submit").on("click", async function() {
+
           //　リクエストデータをフォームから取得
           const requestData = {
             taskName: $("#create-form input[name=task]").val(),
-            deadline: $("#create-form input[name=deadline]").val(),
+            deadline: $("#create-form input[name=deadline]"),
             category: $("#create-form select[name=category]").val(),
           };
 
@@ -162,7 +163,7 @@
     <!-- タスク更新フォーム -->
     <div class="modal fade" id="update-form-modal" tabindex="-1" role="dialog" aria-labelledby="update-form-modalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content update-form-modal">
             <div class="modal-header">
               <h5 class="modal-title" id="update-form-modalLabel">タスクの更新</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -241,9 +242,9 @@
 
 
         //　変更ボタンを押したとき
-
         $("#update-task").on("click", async function (){
           const id = $("#update-form input[name=id]").val();
+
           //　フォームからデータを取得する
           const requestData = {
             taskName: $("#update-form input[name=task]").val(),
@@ -280,6 +281,9 @@
           "//" + window.location.host + "/api/tasks"
         );
 
+          // deadlineAlter = new Date (item.deadline); //これで治るかも？
+          // console.log (deadlineAlter);
+
         const list = response.map((item) => {
           // リストを表示
           return `
@@ -288,15 +292,16 @@
                 <div class="col-2" style="display: none;">${item.category_id}</div>  
                 <div class="col-6">${item.task_name}</div>
                 <div class="col-2">${item.deadline}</div>
-                <div class="col-2">${item.task_status}</div>
+                <div class="col-2">${item.status}</div>
                 <div class="btn-group col-2" role="group" aria-label="Basic example">
                 <button type="button" class="btn btn-success uppdate-botton" data-toggle="modal" data-target="#update-form-modal" data-id=${item.id} >変更</button>
                 <button type="button" class="btn btn-danger delete-button" data-toggle="modal" data-target="#removeModal" data-id=${item.id} data-delete=${item.task_name}>削除</button>
                 </div>
               </div>
             </li>`;
+
         });
-        //
+        // 
 
         $("ul#task-list").append(list);
       });
@@ -404,16 +409,16 @@
 
       // 削除
 
-      $(".btn-danger").on("click",function () {
-        const task = $(this).data("delete");
-        alart(`下記の内容を削除します。\n ${task}`);
-      });
+      // $(".btn-danger").on("click",function () {
+      //   const task = $(this).data("delete");
+      //   alart(`下記の内容を削除します。\n ${task}`);
+      // });
       
-      //　削除モーダルを出す
-      $('#removeModal').on('show.bs.modal', function (event) {
-        var button = $(event.update-form-modal) // Button that triggered the modal
-        var recipient = button.data('whatever')
-      }); 
+      // //　削除モーダルを出す
+      // $('#removeModal').on('show.bs.modal', function (event) {
+      //   var button = $(event.update-form-modal) // Button that triggered the modal
+      //   var recipient = button.data('whatever')
+      // }); 
 
      </script>
       
