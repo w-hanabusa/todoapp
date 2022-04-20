@@ -40,7 +40,7 @@ getTasks = async function () {
     connection = await mysql.createConnection(config.dbSetting);
     //
     const sql =
-      "SELECT t_task.id, t_task.category_id, m_category.category_name, t_task.task_name,t_task.deadline, t_task.updated_at,t_task.created_at,t_status.status FROM t_task INNER JOIN m_category ON t_task.category_id = m_category.id INNER JOIN t_status ON t_task.task_status = t_status.id;";
+      "SELECT t_task.id, t_task.category_id, m_category.category_name, t_task.task_name,t_task.deadline, t_task.updated_at,t_task.created_at,t_status.status FROM t_task INNER JOIN m_category ON t_task.category_id = m_category.id INNER JOIN t_status ON t_task.task_status = t_status.id ORDER BY t_task.deadline;";
       const [rows, fields] = await connection.query(sql);
       return rows;
   } catch(err) {

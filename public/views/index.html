@@ -46,10 +46,19 @@
       crossorigin="anonymous"
     ></script>
 
+    <div class="container-fluid">
+      <ul class="row fixed-top shadow-sm">
+        <li class="col">menu01</li>
+        <li class="col">menu02</li>
+        <li class="col">menu03</li>
+        <li class="col">menu04</li>
+      </ul>
+    </div>
+
 
 
     <!--　タスク追加のボタン -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create-form-modal">
+    <button type="button" class="btn btn-primary shadow" data-toggle="modal" data-target="#create-form-modal">
       タスクを追加する
     </button>
     
@@ -103,7 +112,7 @@
           //　リクエストデータをフォームから取得
           const requestData = {
             taskName: $("#create-form input[name=task]").val(),
-            deadline: $("#create-form input[name=deadline]"),
+            deadline: $("#create-form input[name=deadline]").val(),
             category: $("#create-form select[name=category]").val(),
           };
 
@@ -121,39 +130,18 @@
     
     <!--　タスク削除ボタン　-->
     <script>
-    /*<div class="modal fade" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="removeModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="removeModalLabel">タスクの削除</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div id="delete">タスクを削除します</div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger">削除</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div> */
-
-    
-      //push deleat
+      //　削除ボタンを押したとき
       $(document).on("click", ".delete-button", async function() {
         const taskName = $(this).data("delete");
         if (confirm(`下記のタスクを削除します。\n ${taskName}`)) {
           const id = $(this).data("id");
 
-          //delete api run
+          //　削除 API を実行
           const response = await httpDelete(
             "//" + window.location.host + `/api/tasks/${id}`
           );
 
-          //reload
+          //　画面をリロード
           window.location.reload();
         }
       });
@@ -217,8 +205,8 @@
     </div>
 
     <script>
+      
       //更新ボタンを押したとき
-
       $(document).on("click", ".uppdate-botton", async function (){
         $("#update-form").show();
         const id = $(this).data("id");
@@ -230,7 +218,7 @@
         const date = new Date(response[0].deadline);
         const year = date.getFullYear();
         const month = ("0" + (date.getMonth() +1)).slice(-2);
-        const day = ("0" + (date.getDate() +1)).slice(-2);
+        const day = ("0" + (date.getDate())).slice(-2);
         const deadlineVal = `${year}-${month}-${day}`;
 
         // 初期値設定
@@ -274,109 +262,43 @@
     <ul class="list-group" id="task-list"></ul>
 
     <script>
-      //
+      //　タスク一覧取得
       $(async function () {
-        //
+        //　一覧を取得するAPIを実行
         const response = await httpGet(
           "//" + window.location.host + "/api/tasks"
         );
 
-          // deadlineAlter = new Date (item.deadline); //これで治るかも？
-          // console.log (deadlineAlter);
-
+        
         const list = response.map((item) => {
-          // リストを表示
+        
+
+        // 日付を xxxx-xx-xx　に変換
+        const date = new Date(item.deadline);
+        const year = date.getFullYear();
+        const month = ("0" + (date.getMonth() +1)).slice(-2);
+        const day = ("0" + (date.getDate() )).slice(-2);
+        const deadlineVal = `${year}-${month}-${day}`;
+
           return `
-             <li class="list-group-item">
+             <li class="list-group-item shadow-sm cc-${item.category_id}">
             <div class="row">
-                <div class="col-2" style="display: none;">${item.category_id}</div>  
                 <div class="col-6">${item.task_name}</div>
-                <div class="col-2">${item.deadline}</div>
+                <div class="col-2">${deadlineVal}</div>
                 <div class="col-2">${item.status}</div>
                 <div class="btn-group col-2" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-success uppdate-botton" data-toggle="modal" data-target="#update-form-modal" data-id=${item.id} >変更</button>
-                <button type="button" class="btn btn-danger delete-button" data-toggle="modal" data-target="#removeModal" data-id=${item.id} data-delete=${item.task_name}>削除</button>
+                <button type="button" class="btn btn-success uppdate-botton shadow-sm" data-toggle="modal" data-target="#update-form-modal" data-id=${item.id} >変更</button>
+                <button type="button" class="btn btn-danger delete-button shadow-sm" data-toggle="modal" data-target="#removeModal" data-id=${item.id} data-delete=${item.task_name}>削除</button>
                 </div>
               </div>
-            </li>`;
+            </li>`;                 
 
         });
-        // 
-
+          // ulタグにリストを追加
         $("ul#task-list").append(list);
       });
 
-
-    /*<ul class="list-group">
-      <li class="list-group-item list-1">
-        
-        <div class="row"> 
-          <div class="category" style="display: none;">1</div>
-          <div class="category"></div>
-          <div class="col-5">犬の散歩をする</div>
-          <div class="col-2">2022/04/13</div>
-          <div class="col-2">手つかず</div>
-          <div class="btn-group col-2" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#update-form-modal">変更</button>
-            <button type="button" class="btn btn-danger delete" data-toggle="modal" data-target="#removeModal" data-delete="犬の散歩をする">削除</button>
-          </div>
-        </div>
-        </div>
-      </li>
-
-      <li class="list-group-item list-2">
-        <div class="row">
-          <div class="col-5">犬にご飯をあげる</div>
-          <div class="col-2">2022/04/13</div>
-          <div class="col-2">手つかず</div>
-          <div class="btn-group col-2" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#update-form-modal">変更</button>
-            <button type="button" class="btn btn-danger remove" data-toggle="modal" data-target="#removeModal" data-delete="犬にご飯をあげる">削除</button>
-          </div>
-        </div>
-      </li>
-      <li class="list-group-item list-3">
-        <div class="row">
-          <div class="col-5">床掃除をする</div>
-          <div class="col-2">2022/04/13</div>
-          <div class="col-2">手つかず</div>
-          <div class="btn-group col-2" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#update-form-modal">変更</button>
-            <button type="button" class="btn btn-danger delete" data-toggle="modal" data-target="#removeModal" data-delete="床掃除をする">削除</button>
-          </div>
-        </div>
-      </li> 
-    </sprict>
-
-      <li class="list-group-item list-4">
-        <div class="row">
-          <div class="col-5">お風呂掃除をする</div>
-          <div class="col-2">2022/04/13</div>
-          <div class="col-2">手つかず</div>
-          <div class="btn-group col-2" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#update-form-modal">変更</button>
-            <button type="button" class="btn btn-danger delete" data-toggle="modal" data-target="#removeModal" data-delete="お風呂掃除をする">削除</button>
-          </div>
-        </div>
-      </li>
-      <li class="list-group-item list-5">
-        <div class="row">
-          <div class="col-5">Paizaを進める</div>
-          <div class="col-2">2022/04/13</div>
-          <div class="col-2">手つかず</div>
-          <div class="btn-group col-2" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#update-form-modal">変更</button>
-            <button type="button" class="btn btn-danger delete" data-toggle="modal" data-target="#removeModal" data-delete="Paizaを進める">削除</button>
-          </div>
-        </div>
-      </li>
-    </ul> */
-
   </script>
-
-
-
-
 
     
     <script>
@@ -400,25 +322,18 @@
       $('.uppdate-botton').on('show.bs.modal', function (event) {
         var button = $(event.uppdate-botton) // Button that triggered the modal
         var recipient = button.data('whatever')
-      }); */
-
-
-
-      //カテゴリに応じてラベルに色をつけたい　API先にやろう
-
-
-      // 削除
-
-      // $(".btn-danger").on("click",function () {
-      //   const task = $(this).data("delete");
-      //   alart(`下記の内容を削除します。\n ${task}`);
-      // });
+      }); 
+       $(".btn-danger").on("click",function () {
+         const task = $(this).data("delete");
+         alart(`下記の内容を削除します。\n ${task}`);
+       });
       
-      // //　削除モーダルを出す
-      // $('#removeModal').on('show.bs.modal', function (event) {
-      //   var button = $(event.update-form-modal) // Button that triggered the modal
-      //   var recipient = button.data('whatever')
-      // }); 
+       //　削除モーダルを出す
+       $('#removeModal').on('show.bs.modal', function (event) {
+         var button = $(event.update-form-modal) // Button that triggered the modal
+         var recipient = button.data('whatever')
+       }); 　*/
+      
 
      </script>
       

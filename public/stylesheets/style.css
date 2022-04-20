@@ -1,49 +1,51 @@
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: rgb(254, 254, 254);
+  background-color:#ffffff;
 }
+
+
+.fixed-top {
+  background:linear-gradient(-45deg, rgba(246, 255, 0, .8), rgba(255, 0, 161, .8));
+  height: 50px;
+  line-height: 50px;
+}
+
 
 .list-group-item {
   margin-top: 20px;
 }
 
 .cc-1 {
-  border-left: #EB4E4E solid 20px;
+  border-left: #F25B69 solid 20px;
   margin-top: 20px;
 }
-
 .cc-2 {
-  border-left: #2F8D8D solid 20px;
+  border-left: #3B9D90 solid 20px;
 }
 .cc-3 {
-  border-left: #EB954E solid 20px;
+  border-left: #FA9F5E solid 20px;
 }
 .cc-4 {
-  border-left: #3EBC3E solid 20px;
+  border-left: #66D14F solid 20px;
 }
 
-
-box {
-  height: 100px;
-  width: 100px;
-  background-color: #e65454;
+.create-form-modal {
+  background-color: rgb(235, 245, 255)
 }
-
 
 .update-form-modal {
   background-color: rgb(241, 254, 248);
-
-}
-
-update-form{
-  cursor: pointer;
-  background-color: rgb(234, 255, 248);
-;
-}
-
-.table-striped {
-  padding: 50px;
 }
 
 
+taihi{
+color: #F25B69;
+color:#3B9D90
+#FA9F5E
+#66D14F
+
+#395ad1,#91f8fa
+
+}
