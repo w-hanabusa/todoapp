@@ -19,7 +19,8 @@
     <script src="../JavaScripts/index.js"></script>
 
     <link rel="stylesheet" href="../stylesheets/style.css" />
-
+    
+    
     <title>Todoアプリ</title>
   </head>
 
@@ -46,22 +47,26 @@
       crossorigin="anonymous"
     ></script>
 
+    <!--　ヘッダー　-->
     <div class="container-fluid">
       <ul class="row fixed-top shadow-sm">
-        <li class="col">menu01</li>
-        <li class="col">menu02</li>
-        <li class="col">menu03</li>
-        <li class="col">menu04</li>
+  
       </ul>
     </div>
 
 
+    
+    
 
+   
     <!--　タスク追加のボタン -->
     <button type="button" class="btn btn-primary shadow" data-toggle="modal" data-target="#create-form-modal">
       タスクを追加する
     </button>
-    
+
+    <div id="page_top" style="z-index:10000"><a href="#"  class="gg-chevron-up-o shadow"></a></div>
+
+  
     <!-- タスク追加フォーム　-->
     <div class="modal fade" id="create-form-modal" tabindex="-1" role="dialog" aria-labelledby="create-form-modalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -104,6 +109,8 @@
        </div>
       </div>
     </div>
+
+  
 
     <script>
       // 登録ボタンを押したとき
@@ -298,6 +305,8 @@
         $("ul#task-list").append(list);
       });
 
+
+  
   </script>
 
     
