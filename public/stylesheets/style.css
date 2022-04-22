@@ -1,26 +1,44 @@
-
+/* スクロールを穏やかにするやつ*/
 html{
   scroll-behavior: smooth;
 }
 
 body {
-  padding: 70px;
+  padding: 80px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color:#ffffff;
 }
 
-
+/* ヘッダー */
 .fixed-top {
   background: linear-gradient(to right, #e0d9f1, #dfeef8);
   height: 50px;
   line-height: 50px;
+  text-align: center;
 }
 
+/* ボタン配色 */
 
 .list-group-item {
   margin-top: 20px;
 }
 
+.btn-primary {
+  background-color: #539af1;
+  border: #539af1;
+}
+
+.uppdate-botton {
+  background-color: #5ad240;
+  border: #5ad240;
+}
+
+.delete-button{
+  background-color: #ef4b5b;
+  border: #ef4b5b;
+}
+
+/* カテゴリー配色 */
 .cc-1 {
   border-left: #F25B69 solid 20px;
   margin-top: 20px;
@@ -35,6 +53,7 @@ body {
   border-left: #66D14F solid 20px;
 }
 
+/* モーダル */
 .create-form-modal {
   background-color: rgb(235, 245, 255)
 }
@@ -43,7 +62,7 @@ body {
   background-color: rgb(241, 254, 248);
 }
 
-
+/* 上アイコン描画 */
 .gg-chevron-up-o {
   box-sizing: border-box;
   position: relative;
@@ -51,7 +70,7 @@ body {
   transform: scale(var(--ggs,1));
   width: 22px;
   height: 22px;
-  border:  #404040 2px solid;
+  border:  #181818 2px solid;
   border-radius: 100px
 }
 .gg-chevron-up-o::after {
@@ -61,25 +80,15 @@ body {
   position: absolute;
   width: 6px;
   height: 6px;
-  border-top: #404040 2px solid;
-  border-right: #404040 2px solid;
+  border-top: #181818 2px solid;
+  border-right: #181818 2px solid;
   transform: rotate(-45deg);
   left: 6px;
   bottom: 5px
 } 
 
-taihi{
-color: #F25B69
-#3B9D90
-#FA9F5E
-#66D14F
 
-#395ad1,#91f8fa /* グラデ */
-
-}
-
-
-/* ボタン全体 */
+/* 上ボタン */
 #page_top{
   width: 80px;
   height: 80px;
@@ -114,15 +123,17 @@ color: #F25B69
   margin: auto;
   text-align: center;
 }
- /* #page_top a::before{
-  content: 'PAGE TOP';
-  font-size: 10px;
-  position: absolute;
-  top: 45px;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin: auto;
-  text-align: center;
-  color: #181818;
-}  */
+
+
+/* カラーパレット */
+taihi{
+  color: #F25B69
+  #3B9D90
+  #FA9F5E
+  #66D14F
+  
+  #395ad1,#91f8fa /* グラデ */
+  #181818
+  #404040
+  
+  }

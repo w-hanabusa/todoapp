@@ -24,6 +24,7 @@
     <title>Todoアプリ</title>
   </head>
 
+
   <body>
     <div class="container">
       <!-- Content here -->
@@ -47,17 +48,22 @@
       crossorigin="anonymous"
     ></script>
 
+
     <!--　ヘッダー　-->
     <div class="container-fluid">
-      <ul class="row fixed-top shadow-sm">
-  
+      <ul class="shadow-sm fixed-top list-group">
+        <li>
+          <div>
+            
+          <div style="display: inline-block; _display: inline;">
+            直近のタスクは  
+            <div id="hedderTask" style="display: inline-block; _display: inline;"></div>
+            です
+            </div>       
+          </div>
+         </li>
       </ul>
     </div>
-
-
-    
-    
-
    
     <!--　タスク追加のボタン -->
     <button type="button" class="btn btn-primary shadow" data-toggle="modal" data-target="#create-form-modal">
@@ -110,50 +116,7 @@
       </div>
     </div>
 
-  
 
-    <script>
-      // 登録ボタンを押したとき
-      $("#submit").on("click", async function() {
-
-          //　リクエストデータをフォームから取得
-          const requestData = {
-            taskName: $("#create-form input[name=task]").val(),
-            deadline: $("#create-form input[name=deadline]").val(),
-            category: $("#create-form select[name=category]").val(),
-          };
-
-      //　新規登録apiを実行
-      const response = await httpPost(
-        "//" + window.location.host + "/api/tasks",
-        requestData
-      );
-
-      //　画面をリロード
-      window.location.reload();
-    });
-    </script>
-
-    
-    <!--　タスク削除ボタン　-->
-    <script>
-      //　削除ボタンを押したとき
-      $(document).on("click", ".delete-button", async function() {
-        const taskName = $(this).data("delete");
-        if (confirm(`下記のタスクを削除します。\n ${taskName}`)) {
-          const id = $(this).data("id");
-
-          //　削除 API を実行
-          const response = await httpDelete(
-            "//" + window.location.host + `/api/tasks/${id}`
-          );
-
-          //　画面をリロード
-          window.location.reload();
-        }
-      });
-    </script>
-    
     
     <!-- タスク更新フォーム -->
     <div class="modal fade" id="update-form-modal" tabindex="-1" role="dialog" aria-labelledby="update-form-modalLabel" aria-hidden="true">
@@ -211,9 +174,89 @@
       </div>
     </div>
 
+    
+    <!-- やることリスト -->  
+    <ul class="list-group" id="task-list"></ul>
+
+    
     <script>
+       // 登録ボタンを押したとき
+       $("#submit").on("click", async function() {
+
+          //　リクエストデータをフォームから取得
+          const requestData = {
+            taskName: $("#create-form input[name=task]").val(),
+            deadline: $("#create-form input[name=deadline]").val(),
+            category: $("#create-form select[name=category]").val(),
+          };
+
+          //　新規登録apiを実行
+          const response = await httpPost(
+            "//" + window.location.host + "/api/tasks",
+            requestData
+          );
+
+          //　画面をリロード
+          window.location.reload();
+        });
+       
+
+        //　削除ボタンを押したとき
+      $(document).on("click", ".delete-button", async function() {
+        const taskName = $(this).data("delete");
+        if (confirm(`下記のタスクを削除します。\n ${taskName}`)) {
+          const id = $(this).data("id");
+
+        //　削除 API を実行
+           const response = await httpDelete(
+          "//" + window.location.host + `/api/tasks/${id}`
+          );
+
+          //　画面をリロード
+          window.location.reload();
+        }
+      });
       
-      //更新ボタンを押したとき
+
+        //　タスク一覧取得
+      $(async function () {
+        //　一覧を取得するAPIを実行
+        const response = await httpGet(
+          "//" + window.location.host + "/api/tasks"
+        );
+
+        //　ヘッダーにタスクを記入
+        $("#hedderTask").text(response[0].task_name);
+        
+        const list = response.map((item) => {
+        
+        // 日付を xxxx-xx-xx　に変換
+        const date = new Date(item.deadline);
+        const year = date.getFullYear();
+        const month = ("0" + (date.getMonth() +1)).slice(-2);
+        const day = ("0" + (date.getDate() )).slice(-2);
+        const deadlineVal = `${year}-${month}-${day}`;
+
+          return `
+             <li class="list-group-item shadow-sm cc-${item.category_id}">
+            <div class="row">
+                <div class="col-4">${item.task_name}</div>
+                <div class="col-3">${deadlineVal}</div>
+                <div class="col-2">${item.status}</div>
+                <div class="btn-group col-3" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-success uppdate-botton shadow-sm" data-toggle="modal" data-target="#update-form-modal" data-id=${item.id} >変更</button>
+                <button type="button" class="btn btn-danger delete-button shadow-sm" data-toggle="modal" data-target="#removeModal" data-id=${item.id} data-delete=${item.task_name}>削除</button>
+                </div>
+              </div>
+            </li>`;                 
+
+        });
+          // ulタグにリストを追加
+        $("ul#task-list").append(list);
+      });
+
+
+        //更新ボタンを押したとき
       $(document).on("click", ".uppdate-botton", async function (){
         $("#update-form").show();
         const id = $(this).data("id");
@@ -232,8 +275,8 @@
         $("#update-form input[name=id]").val(response[0].id);
         $("#update-form input[name=task]").val(response[0].task_name);
         $("#update-form input[name=deadline]").val(deadlineVal);
-        $("#update-form input[name=category]").val(response[0].category_id);
-        $("#update-form input[name=status]").val(response[0].task_status);
+        $("#update-form select[name=category]").val(response[0].category_id);
+        $("#update-form select[name=status]").val(response[0].task_status);
 
 
         //　変更ボタンを押したとき
@@ -260,89 +303,7 @@
 
 
       });
-    </script>
-
-  
-
-    
-    <!-- やることリスト -->  
-    <ul class="list-group" id="task-list"></ul>
-
-    <script>
-      //　タスク一覧取得
-      $(async function () {
-        //　一覧を取得するAPIを実行
-        const response = await httpGet(
-          "//" + window.location.host + "/api/tasks"
-        );
-
-        
-        const list = response.map((item) => {
-        
-
-        // 日付を xxxx-xx-xx　に変換
-        const date = new Date(item.deadline);
-        const year = date.getFullYear();
-        const month = ("0" + (date.getMonth() +1)).slice(-2);
-        const day = ("0" + (date.getDate() )).slice(-2);
-        const deadlineVal = `${year}-${month}-${day}`;
-
-          return `
-             <li class="list-group-item shadow-sm cc-${item.category_id}">
-            <div class="row">
-                <div class="col-6">${item.task_name}</div>
-                <div class="col-2">${deadlineVal}</div>
-                <div class="col-2">${item.status}</div>
-                <div class="btn-group col-2" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-success uppdate-botton shadow-sm" data-toggle="modal" data-target="#update-form-modal" data-id=${item.id} >変更</button>
-                <button type="button" class="btn btn-danger delete-button shadow-sm" data-toggle="modal" data-target="#removeModal" data-id=${item.id} data-delete=${item.task_name}>削除</button>
-                </div>
-              </div>
-            </li>`;                 
-
-        });
-          // ulタグにリストを追加
-        $("ul#task-list").append(list);
-      });
-
-
-  
-  </script>
-
-    
-    <script>
-       /*　boothtrapがやるようになった処理
-         新規登録フォームを出す 
-       $("#add-task").click(function() {
-        $(".add-form").show();
-      }) ;
-      // 新規登録フォームを閉じる
-      $("#add-display-none").click(function () {
-        $(".add-form").hide();
-      });
-
-      // 更新フォームを閉じる
-      $("#update-display-none").click(function () {
-        $(".update-form").hide();
-      }); */ 
-
-      
-      /* 更新フォームを出す
-      $('.uppdate-botton').on('show.bs.modal', function (event) {
-        var button = $(event.uppdate-botton) // Button that triggered the modal
-        var recipient = button.data('whatever')
-      }); 
-       $(".btn-danger").on("click",function () {
-         const task = $(this).data("delete");
-         alart(`下記の内容を削除します。\n ${task}`);
-       });
-      
-       //　削除モーダルを出す
-       $('#removeModal').on('show.bs.modal', function (event) {
-         var button = $(event.update-form-modal) // Button that triggered the modal
-         var recipient = button.data('whatever')
-       }); 　*/
-      
+   
 
      </script>
       
