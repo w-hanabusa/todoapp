@@ -23,7 +23,7 @@ body {
   margin-top: 20px;
 }
 
-.btn-primary {
+.add {
   background-color: #539af1;
   border: #539af1;
 }
@@ -132,8 +132,10 @@ taihi{
   #FA9F5E
   #66D14F
   
-  #395ad1,#91f8fa /* グラデ */
-  #181818
+  #395ad1,#91f8fa  /* ヘッダー用グラデ */
+
+  #181818  /* 戻るボタンの色 */
   #404040
+  #674ad9
   
   }

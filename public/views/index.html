@@ -50,23 +50,22 @@
 
 
     <!--　ヘッダー　-->
-    <div class="container-fluid">
-      <ul class="shadow-sm fixed-top list-group">
-        <li>
-          <div>
-            
-          <div style="display: inline-block; _display: inline;">
-            直近のタスクは  
-            <div id="hedderTask" style="display: inline-block; _display: inline;"></div>
-            です
-            </div>       
-          </div>
-         </li>
-      </ul>
-    </div>
+      <div class="container-fluid">
+        <ul class="shadow-sm fixed-top list-group">
+          <li>
+            <div>
+            <div style="display: inline-block; _display: inline;">
+              直近のタスクは  
+              <div id="hedderTask" style="display: inline-block; _display: inline;"></div>
+              です
+              </div>       
+            </div>
+          </li>
+        </ul>
+      </div>
    
     <!--　タスク追加のボタン -->
-    <button type="button" class="btn btn-primary shadow" data-toggle="modal" data-target="#create-form-modal">
+    <button type="button" class="btn btn-primary add shadow" data-toggle="modal" data-target="#create-form-modal">
       タスクを追加する
     </button>
 
@@ -109,8 +108,8 @@
 
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="submit">タスクを追加</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>          
+            <button type="button" class="btn btn-primary" id="submit">タスクを追加</button>  
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>        
           </div>
        </div>
       </div>
@@ -165,11 +164,10 @@
               <div class="modal-footer">
                 <div class="update-form-btn">
                   <button type="button" class="btn btn-success" id="update-task">変更</button>
-                  <button type="button" class="btn btn-secondary" id="update-display-none" data-dismiss="modal">閉じる</button>          
+                  <button type="button" class="btn btn-secondary" id="update-display-none" data-dismiss="modal">閉じる</button>         
                 </div>
               </div>
               </div>
-
         </div>
       </div>
     </div>
@@ -235,7 +233,7 @@
         const year = date.getFullYear();
         const month = ("0" + (date.getMonth() +1)).slice(-2);
         const day = ("0" + (date.getDate() )).slice(-2);
-        const deadlineVal = `${year}-${month}-${day}`;
+        const deadlineVal = `${year}年${month}月${day}日`;
 
           return `
              <li class="list-group-item shadow-sm cc-${item.category_id}">
