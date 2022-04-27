@@ -1,55 +1,141 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* スクロールを穏やかにするやつ*/
+html{
+  scroll-behavior: smooth;
 }
+
+body {
+  padding: 80px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color:#ffffff;
+}
+
+/* ヘッダー */
+.fixed-top {
+  background: linear-gradient(to right, #e0d9f1, #dfeef8);
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+}
+
+/* ボタン配色 */
 
 .list-group-item {
   margin-top: 20px;
 }
 
-.list-1 {
-  border-left: #EB4E4E solid 20px;
+.add {
+  background-color: #539af1;
+  border: #539af1;
+}
+
+.btn-success {
+  background-color: #5ad240;
+  border: #5ad240;
+}
+
+.delete-button{
+  background-color: #ef4b5b;
+  border: #ef4b5b;
+}
+
+/* カテゴリー配色 */
+.cc-1 {
+  border-left: #F25B69 solid 20px;
   margin-top: 20px;
 }
-
-.list-2 {
-  border-left: #2F8D8D solid 20px;
+.cc-2 {
+  border-left: #3B9D90 solid 20px;
 }
-.list-3 {
-  border-left: #EB954E solid 20px;
+.cc-3 {
+  border-left: #FA9F5E solid 20px;
 }
-.list-4 {
-  border-left: #3EBC3E solid 20px;
-}
-.list-5 {
-  border-left: #2F8D8D solid 20px;
+.cc-4 {
+  border-left: #66D14F solid 20px;
 }
 
-box {
-  height: 100px;
-  width: 100px;
-  background-color: #e65454;
+/* モーダル */
+.create-form-modal {
+  background-color: rgb(235, 245, 255)
 }
 
-.add-form-modal {
-  background-color: rgb(233, 251, 251);
+.update-form-modal {
+  background-color: rgb(241, 254, 248);
+}
+
+/* 上アイコン描画 */
+.gg-chevron-up-o {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  transform: scale(var(--ggs,1));
+  width: 22px;
+  height: 22px;
+  border:  #181818 2px solid;
+  border-radius: 100px
+}
+.gg-chevron-up-o::after {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-top: #181818 2px solid;
+  border-right: #181818 2px solid;
+  transform: rotate(-45deg);
+  left: 6px;
+  bottom: 5px
+} 
+
+
+/* 上ボタン */
+#page_top{
+  width: 80px;
+  height: 80px;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  background: #674ad9;
+  border-radius: 50%;
+  opacity: 0.6;
+  }
+
+#page_top a{
+  position: relative;
+  display: block;
+  width: 80px;
+  height: 80px;
+  text-decoration: none;
+} 
+
+#page_top a::after{
+  content: '';
+  font-weight: 900;
+  font-size: 10px;
+  color: #181818;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 20px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
 }
 
 
-add-form {
-  cursor: pointer;
-  background-color: rgb(233, 251, 251);
+/* カラーパレット */
+taihi{
+  color: #F25B69
+  #3B9D90
+  #FA9F5E
+  #66D14F
+  
+  #395ad1,#91f8fa  /* ヘッダー用グラデ */
 
-}
-
-update-form{
-  cursor: pointer;
-  background-color: rgb(234, 255, 248);
-;
-}
-
-.table-striped {
-  padding: 50px;
-}
-
-
+  #181818  /* 戻るボタンの色 */
+  #404040
+  #674ad9
+  
+  }
