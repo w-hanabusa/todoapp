@@ -223,14 +223,6 @@
           "//" + window.location.host + "/api/tasks"
         );
 
-        //　現在時刻を取得
-        const now = new Date();
-        const yy = now.getFullYear();
-        const mm = ("0" + (now.getMonth() +1)).slice(-2);
-        const dd = ("0" + (now.getDate() )).slice(-2);
-        const nowVal = `${yy}-${mm}-${dd}`;
-        console.log(nowVal);
-
         //　ヘッダーにタスクを記入
         $("#hedderTask").text(response[0].task_name);
         
@@ -241,38 +233,22 @@
         const year = date.getFullYear();
         const month = ("0" + (date.getMonth() +1)).slice(-2);
         const day = ("0" + (date.getDate() )).slice(-2);
-        const deadlineVal = `${year}-${month}-${day}`;
+        const deadlineVal = `${year}年${month}月${day}日`;
         
-        const deadlinealter = year+month+day;
-          console.log(deadlinealter);
-        
-        const remaining = `${month - mm}ヵ月${day - dd}`;
-        console.log(remaining);
 
           return `
              <li class="list-group-item shadow-sm cc-${item.category_id}">
             <div class="row" >
-                <div class="col-3">${item.task_name}</div>
-                <div class="col-2">${deadlineVal}</div>
+                <div class="col-4">${item.task_name}</div>
+                <div class="col-3">${deadlineVal}</div>
                 <div class="col-2">${item.status}</div>
-                <div id="remaining-box" class="col-2">締め切り${remaining}日前です</div>
               <div class="btn-group col-3" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-success uppdate-botton shadow-sm" data-toggle="modal" data-target="#update-form-modal" data-id=${item.id} >変更</button>
                   <button type="button" class="btn btn-danger delete-button shadow-sm" data-toggle="modal" data-target="#removeModal" data-id=${item.id} data-delete=${item.task_name}>削除</button> 
               </div>
+            </li>
               </div>
-            </li>`;        
-            
-            // 締め切りと現在時刻の比較
-        const deadlineAlter = year+month+day;
-        const today = yy+mm+dd;
-        if(today <= deadlineAlter ){
-        $("#remaining-box").html("締め切りまで猶予があります");
-        } else {
-        //条件に合わない場合
-            $("#remaining-box").html('締め切りを過ぎています');
-        }
-
+            `;        
         });
           // ulタグにリストを追加
         $("ul#task-list").append(list);
